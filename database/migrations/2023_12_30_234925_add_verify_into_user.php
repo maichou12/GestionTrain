@@ -34,6 +34,7 @@ return new class extends Migration
 
             // Supprimez la colonne 'activation_token'
             $table->dropColumn('activation_token');
+            $x = null;
         });
     }
 };
