@@ -14,6 +14,15 @@ class LoginController extends Controller
     public function __construct(Request $request){
         $this->request = $request;
     }
+// message d'erreur si le user n'est pas connecte et veut reserever
+   /* protected function authenticated(Request $request, $user)
+{
+    if (!Auth::check()) {
+        return redirect()->route('login')->with('warning',
+    'Your account has been activated');
+    }
+
+}*/
 
     public function logout(){
         Auth::logout();

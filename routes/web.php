@@ -24,14 +24,17 @@ Route::get('/contact', function (){
     return view('Layouts.contact');
 })->name('contact-p');
 
-Route::get('/reservations', function (){
-    return view('Layouts.reservations');
-})->name('reservation-p');
 
-// groupage des routes des Reservations
-
+// groupage des routes des Reservations(tickets)
 Route::controller(TicketController::class)->group(function(){
+    // liste des tickets du user
     Route::get('/ticket','index')->name('ticket-p');
+    // page de reservation d'un ticker(creation)
+    Route::get('/reservation', 'reservation')->name('reservation-create')->middleware('auth');
+    // enregistrement du ticket
+    Route::post('/reservation/store', 'store')->name('reservation-store');
+    Route::get('/qrcode','qrCode')->name('qrcode-p');
+
 });
 
 // groupage des routes des trajets

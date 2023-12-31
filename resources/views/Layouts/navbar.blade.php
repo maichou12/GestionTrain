@@ -53,7 +53,19 @@
             <li class="@if (Request::route()->getName()=='contact-p') active @endif" ><a href="{{route('contact-p')}}">Contact</a></li>
           </ul>
 
-          <a href="#" class="btn-book btn btn-secondary btn-sm menu-absolute">Reserver</a>
+          @if (auth()->check())
+          <!-- Utilisateur connecté -->
+          <a href="{{ route('reservation-create') }}" class="btn-book btn btn-secondary btn-sm menu-absolute">Réserver</a>
+      @else
+          <!-- Utilisateur non connecté -->
+          <a href="{{ route('login') }}" class="btn-book btn btn-warning btn-sm menu-absolute" onclick="showLoginWarning()">Réserver</a>
+          <!-- JavaScript pour afficher le message d'avertissement -->
+    <script>
+        function showLoginWarning() {
+            alert('Veuillez d\'abord vous connecter pour faire une réservation.');
+        }
+    </script>
+@endif
 
           <a href="#" class="burger ml-auto float-right site-menu-toggle js-menu-toggle d-inline-block d-lg-none light" data-toggle="collapse" data-target="#main-navbar">
             <span></span>

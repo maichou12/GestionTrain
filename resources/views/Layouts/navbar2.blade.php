@@ -34,6 +34,23 @@
                         <a class="nav-link" href="{{ route('logout-p') }}">Logout</a>
                       </li>
                     @endauth
+                    @if (auth()->check())
+                    <!-- Utilisateur connecté -->
+                    <li class="nav-item btn-sm menu-absolute">
+                        <a class="nav-link btn-sm " href="{{ route('reservation-create') }}">Réserver</a>
+                    </li>
+                @else
+                    <!-- Utilisateur non connecté -->
+                    <li class="menu-absolute">
+                        <a class="nav-link btn-sm " href="{{ route('login') }}">Réserver</a>
+                    </li>
+                    <!-- JavaScript pour afficher le message d'avertissement -->
+              <script>
+                  function showLoginWarning() {
+                      alert('Veuillez d\'abord vous connecter pour faire une réservation.');
+                  }
+              </script>
+          @endif
 
               </ul>
             </div>
