@@ -8,52 +8,8 @@
     <title>Trajets</title>
 </head>
 <body style="background-color: #eef0f1; color: #3a0c0c;">
-<div>
-    <nav  class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <ul class="nav justify-content-center  md-12 ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{{ route('accueil') }}">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('billet-p') }}">Billets</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('contact-p') }}">Contact</a>
-                        </li>
 
-                        {{-- Verification de l'auth du user --}}
-          @guest
-          <div >
-            <a href="{{route('login')}}" class="btn btn-outline-secondary my-2 my-sm-0 ml-auto">
-              <span class="icon-lock "></span>
-              Connexion
-            </a>
-            <a href="{{route('register')}}" class="btn btn-outline-secondary my-2 my-sm-0 ml-auto">
-              <span class="icon-person"></span>
-              Inscription
-            </a>
-          </div>
-          @endguest
-          {{-- afficher logout en cas de connexion --}}
-            @auth
-            <div class="btn btn-outline-primary my-2 my-sm-0 ml-auto">
-                <a href="{{route('logout-p')}}" class="small mr-3">
-                  <span class="icon-lock"></span>
-                  Logout
-                </a>
-              </div>
-            @endauth
-
-
-                </ul>
-                </div>
-            </div>
-        </div>
-    </nav>
-</div>
+@include('Layouts.navbar2')
 
 @if(session('success'))
     <div class="alert alert-success">
@@ -62,6 +18,9 @@
     @endif
 <br>
 
+<div class="text-center">
+    <a href="{{ route('accueil') }}" class="btn btn-outline-primary btn-lg">Retour à la page d'acceuil</a>
+</div>
 <h1>
     La liste des billets
 </h1>
@@ -71,7 +30,6 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Nom</th>
       <th scope="col">Prix </th>
       <th scope="col">Trajet </th>
       <th scope="col">Classe </th>
@@ -87,10 +45,9 @@
   @foreach($listeBillets as $billet)
     <tr>
       <th scope="row">{{$id}}</th>
-      <td>{{$billet->nom}}</td>
       <td>{{$billet->Prix}}</td>
-      <td>{{$billet->classe_id }}</td>
-      <td>{{$billet->trajet_id }}</td>
+      <td>{{$billet->trajet->nom }}</td>
+      <td>{{$billet->classe->nom }}</td>
       <td>
         <a href="#" class="btn btn-outline-info ">Infos</a>
 

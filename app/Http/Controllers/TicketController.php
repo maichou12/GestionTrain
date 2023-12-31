@@ -11,4 +11,12 @@ class TicketController extends Controller
         $listeTickets = Ticket::all();
            return view('Layouts.tickets', compact('listeTickets'));
        }
+
+    public function mesTickets(){
+        $user = auth()->user();
+        $listeTickets = $user->tickets;
+
+        // Passez la liste des tickets à la vue
+        return view('Layouts.tickets', compact('listeTickets'));
+    }
 }

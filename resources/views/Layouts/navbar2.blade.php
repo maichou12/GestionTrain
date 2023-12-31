@@ -1,54 +1,42 @@
 <div>
     <nav  class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <ul class="nav justify-content-center  md-12 ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{{ route('accueil') }}">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('billet-p') }}">Billets</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('contact-p') }}">Contact</a>
-                        </li>
-
-                        {{-- Verification de l'auth du user --}}
-          @guest
-          <div >
-            <a href="{{route('login')}}" class="btn btn-outline-secondary my-2 my-sm-0 ml-auto">
-              <span class="icon-lock "></span>
-              Connexion
-            </a>
-            <a href="{{route('register')}}" class="btn btn-outline-secondary my-2 my-sm-0 ml-auto">
-              <span class="icon-person"></span>
-              Inscription
-            </a>
-          </div>
-          @endguest
-          {{-- afficher logout et tickets en cas de connexion --}}
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            {{-- contrainte de reservation(tickets) --}}
             @auth
-            <div class="btn btn-outline-primary my-2 my-sm-0 ml-auto">
-                <a href="{{route('logout-p')}}" class="small mr-3">
-                  <span class="icon-lock"></span>
-                  Logout
-                </a>
-              </div>
-
-
-   <div class="col-6 col-lg-3 text-right">
-       <a href="{{route('ticket-p')}}" class="small mr-3">
-         <span class="icon-lock"></span>
-         Tickets
-       </a>
-     </div>
+            <a class="navbar-brand" href="{{route('ticket-p')}}">Mes reservations </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
             @endauth
 
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="{{ route('accueil') }}">Accueil <span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ route('billet-p') }}">Billets</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ route('trajet-p') }}">Trajets</a>
+                </li>
+                 {{-- contrainte de l'ath et logout --}}
+                @guest
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login') }}">Login</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{{ route('register') }}">Register</a>
+                    </li>
+                @endguest
+                    @auth
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('logout-p') }}">Logout</a>
+                      </li>
+                    @endauth
 
-                </ul>
-                </div>
+              </ul>
             </div>
-        </div>
+          </nav>
     </nav>
 </div>

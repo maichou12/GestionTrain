@@ -8,6 +8,7 @@
     <title>Trajets</title>
 </head>
 <body style="background-color: #eef0f1; color: #3a0c0c;">
+
 @include('Layouts.navbar2')
 
 @if(session('success'))
@@ -16,7 +17,9 @@
     </div>
     @endif
 <br>
-
+<div class="text-center">
+    <a href="{{ route('accueil') }}" class="btn btn-outline-primary btn-lg">Retour à la page d'acceuil</a>
+</div>
 <h1>
     La liste des Horaires
 </h1>

@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Billet extends Model
 {
     use HasFactory;
+
+    public function trajet()
+    {
+        return $this->belongsTo(Trajet::class, 'trajet_id');
+    }
+    public function classe()
+    {
+        return $this->belongsTo(Classe::class, 'classe_id');
+    }
 }

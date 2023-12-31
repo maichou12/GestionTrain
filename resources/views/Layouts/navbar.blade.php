@@ -30,12 +30,6 @@
                   Logout
                 </a>
               </div>
-              <div class="col-6 col-lg-3 text-right">
-                <a href="{{route('ticket-p')}}" class="small mr-3">
-                  <span class="icon-lock"></span>
-                  Tickets
-                </a>
-              </div>
             @endauth
 
 
@@ -52,8 +46,9 @@
             <li><a class="@if (Request::route()->getName()=='trajet-p') active @endif" href="{{route('trajet-p')}}">Trajets</a></li>
 
             <li class="@if (Request::route()->getName()=='horaire-p') active @endif" ><a href="{{route('horaire-p')}}">Horaires</a></li>
-
-            <li class="@if (Request::route()->getName()=='reservation-p') active @endif" ><a href="{{route('reservation-p')}}">Reservations</a></li>
+            @auth
+            <li class="@if (Request::route()->getName()== 'ticket-p') active @endif" ><a href="{{route('ticket-p')}}">Mes Reservations</a></li>
+            @endauth
             <li class="@if (Request::route()->getName()=='billet-p') active @endif" ><a href="{{route('billet-p')}}">Billets</a></li>
             <li class="@if (Request::route()->getName()=='contact-p') active @endif" ><a href="{{route('contact-p')}}">Contact</a></li>
           </ul>
