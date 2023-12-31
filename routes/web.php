@@ -1,8 +1,13 @@
 <?php
 
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\TemplateController;
+use App\Http\Controllers\BilletController;
+use App\Http\Controllers\HoraireController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\TrajetController;
+use App\Http\Controllers\TemplateController;
+use App\Http\Controllers\TicketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +19,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/about', function (){
-    return view('Layouts.about');
-})->name('about-p');
+
 Route::get('/contact', function (){
     return view('Layouts.contact');
 })->name('contact-p');
@@ -24,13 +27,27 @@ Route::get('/contact', function (){
 Route::get('/reservations', function (){
     return view('Layouts.reservations');
 })->name('reservation-p');
-Route::get('/horaires', function (){
-    return view('Layouts.horaires');
-})->name('horaire-p');
-Route::get('/train', function (){
-    return view('Layouts.train');
-})->name('train-p');
 
+// groupage des routes des Reservations
+
+Route::controller(TicketController::class)->group(function(){
+    Route::get('/ticket','index')->name('ticket-p');
+});
+
+// groupage des routes des trajets
+Route::controller(TrajetController::class)->group(function(){
+    Route::get('/trajet','index')->name('trajet-p');
+});
+// groupage des routes des billets
+
+Route::controller(BilletController::class)->group(function(){
+    Route::get('/billet','index')->name('billet-p');
+});
+
+// groupage des routes des horaires
+Route::controller(HoraireController::class)->group(function(){
+    Route::get('/horaire','index')->name('horaire-p');
+});
 
 // groupage des routes du templates
 Route::controller(TemplateController::class)->group( function (){

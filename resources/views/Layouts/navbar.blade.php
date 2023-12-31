@@ -22,7 +22,7 @@
             </a>
           </div>
           @endguest
-          {{-- afficher logout en cas de connexion --}}
+          {{-- afficher logout et tickets en cas de connexion --}}
             @auth
             <div class="col-6 col-lg-3 text-right">
                 <a href="{{route('logout-p')}}" class="small mr-3">
@@ -30,7 +30,14 @@
                   Logout
                 </a>
               </div>
+              <div class="col-6 col-lg-3 text-right">
+                <a href="{{route('ticket-p')}}" class="small mr-3">
+                  <span class="icon-lock"></span>
+                  Tickets
+                </a>
+              </div>
             @endauth
+
 
         </div>
       </div>
@@ -42,12 +49,12 @@
 
           <ul class="js-clone-nav d-none d-lg-inline-block site-menu">
             <li class="active"><a href="{{route('accueil')}}">Accueil</a></li>
-            <li><a class="@if (Request::route()->getName()=='train-p') active @endif" href="{{route('train-p')}}">Trains</a></li>
+            <li><a class="@if (Request::route()->getName()=='trajet-p') active @endif" href="{{route('trajet-p')}}">Trajets</a></li>
 
             <li class="@if (Request::route()->getName()=='horaire-p') active @endif" ><a href="{{route('horaire-p')}}">Horaires</a></li>
 
             <li class="@if (Request::route()->getName()=='reservation-p') active @endif" ><a href="{{route('reservation-p')}}">Reservations</a></li>
-            <li class="@if (Request::route()->getName()=='about-p') active @endif" ><a href="{{route('about-p')}}">A Propos</a></li>
+            <li class="@if (Request::route()->getName()=='billet-p') active @endif" ><a href="{{route('billet-p')}}">Billets</a></li>
             <li class="@if (Request::route()->getName()=='contact-p') active @endif" ><a href="{{route('contact-p')}}">Contact</a></li>
           </ul>
 
