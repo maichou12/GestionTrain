@@ -49,8 +49,21 @@
                     <th scope="row">{{$id}}</th>
                     <td>{{$ticket->user->prenom}} {{ $ticket->user->nom }}</td>
                     <td>{{$ticket->billet->Prix}}</td>
-                    <td>{{$ticket->billet->trajet->nom}}</td>
-                    <td>{{$ticket->billet->trajet->horaire->heureDep}}</td>
+                    {{-- si le trajet du billeta un nom affiche sinon prix et classe uniquement --}}
+                    <td>
+                        @if($ticket->billet->trajet)
+                            {{ $ticket->billet->trajet->nom }} - {{ $ticket->billet->Prix }} - {{ $ticket->billet->classe->nom }}
+                        @else
+                            {{ $ticket->billet->Prix }} - {{ $ticket->billet->classe->nom }}
+                         @endif
+                    </td>
+                    <td>
+                        @isset($ticket->horaire)
+                        {{ $ticket->horaire->heureDep }}
+                    @else
+                        Heure de départ non disponible
+                    @endisset
+                    </td>
                     <td>{{$ticket->billet->classe->nom}}</td>
                     <td>
                         @if ($ticket->codeQr)

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Billet;
 use App\Models\Ticket;
+use App\Models\Horaire;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -18,9 +19,6 @@ class TicketController extends Controller
         $user = Auth::user();
         // Récupérer les réservations uniquement pour l'utilisateur connecté
         $listeTickets = $user->tickets;
-
-
-
            return view('Layouts.tickets', compact('listeTickets'));
        }
 
@@ -34,11 +32,11 @@ class TicketController extends Controller
 
     // fonction de reservation (ajout de ticket)
     public function reservation(Request $request){
-        // Récupérer la liste des billets (vous devez ajuster cela en fonction de votre modèle)
+        // Récupérer la liste des billets
         $billets = Billet::with('trajet')->get();
+        $horaires = Horaire::all();
 
-
-        return view('crudTickets.reservation', compact('billets'));
+        return view('crudTickets.reservation', compact('billets', 'horaires'));
     }
 
     // mise a jour dans la bd
@@ -46,6 +44,7 @@ class TicketController extends Controller
         $request -> validate(
             [
                 'billet_id'=> 'required|exists:billets,id',
+                'heure_depart_perso' => 'required|exists:horaires,id',
             ]
         );
 
@@ -54,6 +53,7 @@ class TicketController extends Controller
             'billet_id' => $request->input('billet_id'),
             'user_id' => auth()->id(), // Utilisateur connecté
             'statut' => 1, // Valeur par défaut
+            'heure_depart_perso' => $request->input('heure_depart_perso'),
         ]);
         $ticket->save();
         $this->generateQrCodes($ticket);

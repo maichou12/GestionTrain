@@ -38,7 +38,13 @@
                             </option>
                         @endforeach
                     </select>
-
+                    <br>
+                    <select name="heure_depart_perso" id="heure_depart_perso" class="form-control" required>
+                        <option value="">Sélectionnez une heure de depart</option>
+                        @foreach($horaires as $horaire)
+                            <option value="{{ $horaire->id }}">{{ $horaire->heureDep }}</option>
+                        @endforeach
+                    </select>
                     </div>
                       <br>
                       <div class="col-12 text-center">

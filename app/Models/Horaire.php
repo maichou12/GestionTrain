@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Horaire extends Model
 {
     use HasFactory;
-    public function trajet(){
-        return $this->hasMany(Trajet::class, 'horaire_id');
+
+    public function ticket(){
+        return $this->hasMany(Ticket::class, 'heure_depart_perso');
     }
 }

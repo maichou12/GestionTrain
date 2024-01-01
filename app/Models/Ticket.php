@@ -15,6 +15,7 @@ class Ticket extends Model
         'user_id', // Assurez-vous que 'user_id' est dans la liste fillable
         'statut',
         'codeQr',
+        'heure_depart_perso',
     ];
 
     public function billet()
@@ -25,6 +26,11 @@ class Ticket extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function horaire()
+    {
+        return $this->belongsTo(Horaire::class, 'heure_depart_perso');
     }
 
 

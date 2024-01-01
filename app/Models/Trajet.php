@@ -16,10 +16,6 @@ class Trajet extends Model
     {
         return $this->belongsTo(Gare::class, 'gareArrive_id');
     }
-    public function horaire()
-    {
-        return $this->belongsTo(Horaire::class, 'horaire_id');
-    }
 
     public function billets(){
         return $this->hasMany(Billet::class, 'trajet_id');
