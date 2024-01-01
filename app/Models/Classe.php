@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Classe extends Model
 {
     use HasFactory;
+    public function billets(){
+        return $this->hasMany(Billet::class,'classe_id');
+    }
 }

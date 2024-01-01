@@ -28,12 +28,19 @@ Route::get('/contact', function (){
 // groupage des routes des Reservations(tickets)
 Route::controller(TicketController::class)->group(function(){
     // liste des tickets du user
-    Route::get('/ticket','index')->name('ticket-p');
+    Route::get('/ticket','index')->name('ticket-p')->middleware('auth');
     // page de reservation d'un ticker(creation)
     Route::get('/reservation', 'reservation')->name('reservation-create')->middleware('auth');
     // enregistrement du ticket
-    Route::post('/reservation/store', 'store')->name('reservation-store');
-    Route::get('/qrcode','qrCode')->name('qrcode-p');
+    Route::post('/reservation/store', 'reservationStore')->name('reservation-store');
+    // modification du ticket
+    Route::get('/reservation/edit/{id}', 'edit')->name('reservation-edit');
+    // suppression du ticket
+    Route::get('/reservation/delete/{id}', 'delete')->name('reservation-delete');
+    // infos du ticket
+    Route::get('/reservation/show/{id}','show')->name('reservation-show');
+    // code du ticket
+    Route::get('/qrcode/{codeQr}', 'generateQrCode')->name('qrcode-p');
 
 });
 

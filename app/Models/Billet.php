@@ -17,4 +17,9 @@ class Billet extends Model
     {
         return $this->belongsTo(Classe::class, 'classe_id');
     }
+
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class, 'billet_id');
+    }
 }

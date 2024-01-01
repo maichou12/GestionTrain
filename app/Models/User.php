@@ -14,7 +14,7 @@ class User extends Authenticatable
 
     public function tickets()
     {
-        return $this->hasMany(Ticket::class);
+        return $this->hasMany(Ticket::class, 'user_id')->orderBy('created_at', 'desc');
     }
 
     /**

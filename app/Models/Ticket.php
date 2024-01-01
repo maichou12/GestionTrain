@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\DB;
 class Ticket extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        // Autres attributs fillable...
+        'billet_id',
+        'user_id', // Assurez-vous que 'user_id' est dans la liste fillable
+        'statut',
+        'codeQr',
+    ];
 
     public function billet()
     {
@@ -17,8 +24,9 @@ class Ticket extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
+
 
     protected static function booted()
     {

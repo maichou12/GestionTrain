@@ -20,6 +20,7 @@
     <a href="{{ route('reservation-create') }}" class="btn btn-outline-primary btn-lg">Reserver un nouveau ticket</a>
 </div>
 
+
 <div class="container">
     <h2>Mes Réservations</h2>
             @if($listeTickets->count() > 0)
@@ -31,6 +32,7 @@
                     <th scope="col">Billet</th>
                     <th scope="col">Trajet </th>
                     <th scope="col">Heure de depart </th>
+                    <th scope="col">Classe</th>
                     <th scope="col">Code Qr</th>
                     <th scope="col">Statut </th>
                     <th scope="col">Options</th>
@@ -49,7 +51,14 @@
                     <td>{{$ticket->billet->Prix}}</td>
                     <td>{{$ticket->billet->trajet->nom}}</td>
                     <td>{{$ticket->billet->trajet->horaire->heureDep}}</td>
-                    <td>{{ $ticket->codeQr }}</td>
+                    <td>{{$ticket->billet->classe->nom}}</td>
+                    <td>
+                        @if ($ticket->codeQr)
+                            {!! DNS2D::getBarcodeHTML("$ticket->codeQr", 'DATAMATRIX',6,5) !!}
+                        @else
+                            Code QR non disponible
+                        @endif
+                    </td>
                     <td>
                         @if ($ticket->statut == 1)
                             Valide
@@ -58,7 +67,14 @@
                         @endif
                     </td>
                     <td>
-                      <a href="#" class="btn btn-outline-info ">Infos</a>
+                        <div class="btn-group" role="group" aria-label="basic-example">
+                            <a href="#" class="btn btn-outline-info ">Infos</a>
+                            <a href="#" class="btn btn-outline-warning ">Modifier</a>
+                            <a href="#" class="btn btn-outline-danger ">Supprimer</a>
+                            {{-- <button class="btn-btn-danger mn-0">Supprimer</button> --}}
+                        </div>
+                    </td>
+
                   </tr>
                   <!-- auto incrementation de l'id de la table -->
                   @php

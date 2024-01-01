@@ -26,12 +26,19 @@
                 <form action="{{route('reservation-store')}}" method="post" class="row g-3 ">
                     @csrf
                     <div class="form-group">
-                        <label for="user" class="form-label">User</label>
-                        <input type="text" class="form-control" id="user" value="" name="user" >
-                      </div>
-                    <div class="form-group">
-                      <label for="prix" class="form-label">Billet</label>
-                      <input type="text" class="form-control" id="prix" value="" name="prix" required>
+                      <label for="billet_id" class="form-label">Billet</label>
+                      <select name="billet_id" id="billet_id" class="form-control" required>
+                        @foreach($billets as $billet)
+                            <option value="{{ $billet->id }}">
+                                @if($billet->trajet)
+                                    {{ $billet->trajet->nom }} - {{ $billet->Prix }} - {{ $billet->classe->nom }}
+                                @else
+                                    {{ $billet->Prix }} - {{ $billet->classe->nom }}
+                                @endif
+                            </option>
+                        @endforeach
+                    </select>
+
                     </div>
                       <br>
                       <div class="col-12 text-center">

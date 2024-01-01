@@ -20,4 +20,9 @@ class Trajet extends Model
     {
         return $this->belongsTo(Horaire::class, 'horaire_id');
     }
+
+    public function billets(){
+        return $this->hasMany(Billet::class, 'trajet_id');
+    }
+
 }
