@@ -46,7 +46,14 @@
     <tr>
       <th scope="row">{{$id}}</th>
       <td>{{$billet->Prix}}</td>
-      <td>{{$billet->trajet->nom }}</td>
+      {{-- si le trajet du billet a un nom affiche sinon prix et classe uniquement --}}
+      <td>
+        @if ($billet->trajet)
+        {{ $billet->trajet->nom }}
+        @else
+            Le ticket n'a pas de trajet défini
+      @endif
+      </td>
       <td>{{$billet->classe->nom }}</td>
       <td>
         <a href="#" class="btn btn-outline-info ">Infos</a>

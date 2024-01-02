@@ -33,7 +33,6 @@
       <th scope="col">Nom</th>
       <th scope="col">Zone de départ</th>
       <th scope="col">Zone d'arrivée </th>
-      <th scope="col">Heure de depart</th>
       <th scope="col">Options</th>
 
     </tr>
@@ -49,7 +48,6 @@
       <td>{{$trajet->nom}}</td>
       <td>{{$trajet->gareDepart->nom}}</td>
       <td>{{$trajet->gareArrive->nom}}</td>
-      <td>{{$trajet->horaire->heureDep}}</td>
       <td>
         <a href="#" class="btn btn-outline-info ">Infos</a>
 

@@ -1,5 +1,5 @@
 @extends('Layouts.background')
 
-@section('title', 'Dashboard')
+@section('title', 'Mon Profil')
 
 
